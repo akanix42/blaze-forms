@@ -1,0 +1,26 @@
+<component name="textInput">
+  {{> label field=field component=component styles=styles }}
+  <input id="{{id}}" type="text" class="{{getFormFieldClass field.validationStatus styles}}" {{b "value: value"}}>
+  {{> inlineValidationMessage field=field component=component }}
+</component>
+
+<script>
+  import { Random } from 'meteor/random'
+  import inlineValidationMessage from '../components/inlineValidationMessage.html'
+  import label from '../components/label.html'
+
+  textInput.viewmodel({
+    id: Random.id(),
+    label,
+    inlineValidationMessage,
+    component: null,
+    styles: {},
+    getFormFieldClass(validationStatus, styles) {
+      return styles[`${validationStatus}FormField`] || styles.formField
+    },
+    onCreated() {
+      if (!this.component.value)
+        this.component(this);
+    }
+  })
+</script>

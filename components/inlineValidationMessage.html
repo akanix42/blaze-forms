@@ -1,0 +1,16 @@
+<component name="inlineValidationMessage">
+  <label for="{{component.id}}" class="{{getValidationMessageClass field.validationStatus component.styles}}" {{b
+      "if: field.errorMessage"}}>
+    {{field.errorMessage}}
+  </label>
+</component>
+<script>
+  inlineValidationMessage.viewmodel({
+    field: null,
+  })
+  inlineValidationMessage.helpers({
+    getValidationMessageClass(validationStatus, styles) {
+      return styles[`${validationStatus}ValidationMessage`] || styles.validationMessage;
+    }
+  })
+</script>

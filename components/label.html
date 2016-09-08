@@ -1,0 +1,14 @@
+<component name="label">
+  {{#if text}}
+    <label for="{{component.id}}" class="{{component.styles.label}}">{{text}}</label>
+  {{/if}}
+</component>
+
+<script>
+  label.viewmodel({
+    field: null,
+    text() {
+      return this.field().label || this.field().name;
+    }
+  })
+</script>
